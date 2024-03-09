@@ -52,7 +52,7 @@ alignResult$Histone = factor(alignResult$Histone, levels = histList)
 alignResult %>% mutate(AlignmentRate_HSymV2.1 = paste0(AlignmentRate_HSymV2.1, "%"))
 
 ## plot 
-fig3A = alignResult %>% ggplot(aes(x = Histone, y = SequencingDepth/1000000, fill = Histone)) +
+fig1A = alignResult %>% ggplot(aes(x = Histone, y = SequencingDepth/1000000, fill = Histone)) +
     geom_boxplot() +
     geom_jitter(aes(color = Replicate), position = position_jitter(0.15)) +
     scale_fill_viridis(discrete = TRUE, begin = 0.1, end = 0.9, option = "magma", alpha = 0.8) +
@@ -60,9 +60,10 @@ fig3A = alignResult %>% ggplot(aes(x = Histone, y = SequencingDepth/1000000, fil
     theme_bw(base_size = 30) +
     ylab("Sequencing Depth per Million") +
     xlab("") + 
+    ylim(0,28) +
     ggtitle("A. Sequencing Depth")
 
-fig3B = alignResult %>% ggplot(aes(x = Histone, y = AlignmentRate_HSymV2.1, fill = Histone)) +
+fig1B = alignResult %>% ggplot(aes(x = Histone, y = AlignmentRate_HSymV2.1, fill = Histone)) +
     geom_boxplot() +
     geom_jitter(aes(color = Replicate), position = position_jitter(0.15)) +
     scale_fill_viridis(discrete = TRUE, begin = 0.1, end = 0.9, option = "magma", alpha = 0.8) +
@@ -70,8 +71,9 @@ fig3B = alignResult %>% ggplot(aes(x = Histone, y = AlignmentRate_HSymV2.1, fill
     theme_bw(base_size = 30) +
     ylab("% of Mapped Fragments") +
     xlab("") +
+    ylim(0,92) +
     ggtitle("B. Alignment Rate (HSymV2.1)")
-ggarrange(fig3A, fig3B, ncol = 2, common.legend = TRUE, legend="bottom")
+ggarrange(fig1A, fig1B, ncol = 2, common.legend = TRUE, legend="bottom")
 
 
 ### Duplication Rate
@@ -87,7 +89,7 @@ dupResult$Histone = factor(dupResult$Histone, levels = histList)
 
 ## Plot
 
-fig4A = dupResult %>% ggplot(aes(x = Histone, y = DuplicationRate, fill = Histone)) +
+fig2A = dupResult %>% ggplot(aes(x = Histone, y = DuplicationRate, fill = Histone)) +
     geom_boxplot() +
     geom_jitter(aes(color = Replicate), position = position_jitter(0.15)) +
     scale_fill_viridis(discrete = TRUE, begin = 0.1, end = 0.9, option = "magma", alpha = 0.8) +
@@ -98,7 +100,7 @@ fig4A = dupResult %>% ggplot(aes(x = Histone, y = DuplicationRate, fill = Histon
     ylim(0,100) +
   ggtitle("A. Duplication Rate")
 
-fig4B = dupResult %>% ggplot(aes(x = Histone, y = UniqueFragNum/1000000, fill = Histone)) +
+fig2B = dupResult %>% ggplot(aes(x = Histone, y = UniqueFragNum/1000000, fill = Histone)) +
     geom_boxplot() +
     geom_jitter(aes(color = Replicate), position = position_jitter(0.15)) +
     scale_fill_viridis(discrete = TRUE, begin = 0.1, end = 0.9, option = "magma", alpha = 0.8) +
@@ -108,7 +110,7 @@ fig4B = dupResult %>% ggplot(aes(x = Histone, y = UniqueFragNum/1000000, fill = 
     xlab("") +
     ylim(0,20)+
   ggtitle("C. Unique Fragments")
-ggarrange(fig4A, fig4Bnrow=1, common.legend = TRUE, legend="bottom")
+ggarrange(fig2A, fig2B, nrow=1, common.legend = TRUE, legend="bottom")
 
 ### Fragment Length Distribution
 
@@ -125,16 +127,17 @@ fragLen$Histone = factor(fragLen$Histone, levels = histList)
 
 ## Plot
 
-fig5 = fragLen %>% ggplot(aes(x = fragLen, y = fragCount, color = Histone, group = sampleInfo, linetype = Replicate)) +
+fig3 = fragLen %>% ggplot(aes(x = fragLen, y = fragCount, color = Histone, group = sampleInfo, linetype = Replicate)) +
   geom_line(size = 1) +
   scale_color_viridis(discrete = TRUE, begin = 0.1, end = 0.9, option = "magma") +
   theme_bw(base_size = 20) +
   xlab("Fragment Length") +
-  ylab("Count") +
+  ylab("Fragment Count") +
   coord_cartesian(xlim = c(0, 500)) +
+  scale_y_continuous(labels = scales::comma) +
   ggtitle("Fragment Length Distributions")
 
-ggarrange(fig5)
+ggarrange(fig3, legend = "bottom")
 
 
 

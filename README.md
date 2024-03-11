@@ -1,10 +1,10 @@
-**Cut&Run Analysis - Project Information** 
+**CUT&RUN Analysis - Project Information** 
 This analysis aimed to identify target genes of the germ cell inducing AP2 transcription factor in Hydractinia symbiolongicarpus. 
 
 ## Acknowledgments: 
-This analysis was carried out by adapting the Cut&TAG data processing pipeline by Zheng et al (available here: https://dx.doi.org/10.17504/protocols.io.bjk2kkye). 
+To carry out this analysis, the CUT&Tag data processing pipeline by Zheng et al (available here: https://dx.doi.org/10.17504/protocols.io.bjk2kkye) was modified according to the eperimental differences. 
 
-Data was provided by Rowan Mac Gabhann.
+CUT&RUN data was provided by Rowan Mac Gabhann (Frank lab, University of Galway). The reference genome, GTF file and genome index files were provided by Rowan Mac Gabhann.
 
 ## Two files are contained in this repository:
 

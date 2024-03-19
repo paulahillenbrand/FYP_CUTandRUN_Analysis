@@ -4,8 +4,6 @@ This analysis aimed to identify target genes of the germ cell inducing AP2 trans
 ## Acknowledgments: 
 To carry out this analysis, the CUT&Tag data processing pipeline by Zheng et al (available here: https://dx.doi.org/10.17504/protocols.io.bjk2kkye) was modified according to the eperimental differences. 
 
-CUT&RUN data was provided by the Frank lab, University of Galway. The reference genome, GTF file and genome index files were provided by the Frank lab.
-
 ## Two files are contained in this repository:
 
   # FYP_CutAndRun.sh: 
